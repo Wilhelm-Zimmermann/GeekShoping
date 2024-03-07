@@ -31,6 +31,11 @@ builder.Services.AddAuthentication(options =>
             options.TokenValidationParameters.RoleClaimType = "role";
             options.Scope.Add("geek_shoping");
             options.SaveTokens = true;
+            options.CallbackPath = "/signin-oidc";
+            options.Backchannel = new HttpClient 
+            {
+                BaseAddress = new Uri(builder.Configuration["ServiceUrls:IdentityServer"])
+            };
         }
     );
 
